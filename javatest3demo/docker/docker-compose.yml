@@ -1,0 +1,29 @@
+# docker-compose.yaml
+version: "3"
+services:
+  mysql:
+    container_name: handmysql
+    build:
+      dockerfile: D:\javacodes\javatest3demo\docker\mysql\Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: sakila
+      MYSQL_ROOT_PASSWORD: 123456
+    expose:
+      - "3306"
+    networks:
+      - "net"
+  springboot:
+    container_name: springboot
+    build:
+      dockerfile: D:\javacodes\javatest3demo\docker\java\Dockerfile
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    networks:
+      - "net"
+networks:
+  net:
+    driver: bridge
